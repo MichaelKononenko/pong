@@ -1,0 +1,52 @@
+.controll {
+  position: absolute;
+  bottom: 10%;
+  display: inline-block;
+  padding: 5px;
+  border: 3px solid pink;
+  border-radius: 5px;
+  font-size: 30px;
+  color: white;
+  background: gray;
+
+  &--left {
+    left: 10%;
+  }
+  &--right {
+    right: 10%;
+  }
+}
+
+.wrapper {
+  padding-top: 20px;
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+.field {
+  margin: 0 auto;
+  position: relative;
+  border: 3px dashed pink;
+  width: 500px;
+  height: 350px;
+}
+
+.ball {
+  top: 5%;
+  right: 50%;
+  position: absolute;
+  font-size: 50px;
+}
+.paddle {
+  display: inline-block;
+  bottom: 10%;
+  position: absolute;
+  right: 45%;
+  width: 10%;
+  border: 3px solid pink;
+}
+
+.description {
+  text-align: center;
+}

@@ -1,0 +1,17 @@
+@mixin centeredFlex($d, $ai, $jc) {
+  display: $d;
+  align-items: $ai;
+  justify-content: $jc;
+}
+@mixin font($fw, $fs, $lh, $ls, $ta, $c) {
+  font-weight: $fw;
+  font-size: $fs;
+  line-height: calc($lh / $fs);
+  letter-spacing: $ls;
+  text-align: $ta;
+  color: $c;
+}
+
+@mixin transition-common($tp) {
+  transition: $tp 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
