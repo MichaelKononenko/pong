@@ -9,14 +9,17 @@ let yDirection = true;
 
 function moveLeft() {
   xPaddle += 1;
+  if (xPaddle > 84) {
+    xPaddle = 84;
+  }
   renderLine();
 }
 function moveRight() {
   xPaddle -= 1;
+  if (xPaddle < 0) {
+    xPaddle = 0;
+  }
   renderLine();
-}
-function renderLine() {
-  document.getElementById("line").style.right = xPaddle + "%";
 }
 
 function renderBall() {
@@ -83,6 +86,10 @@ window.addEventListener("deviceorientation", (event) => {
   }
   renderLine();
 });
+
+function renderLine() {
+  document.getElementById("line").style.right = xPaddle + "%";
+}
 
 let some = setInterval(() => renderBall(), 50);
 
