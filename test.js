@@ -20,8 +20,8 @@ function renderLine() {
 }
 
 function renderBall() {
-  // document.getElementById("x-ball-info").innerHTML = `xBall = ${xBall} : yBall = ${yBall}`;
-  // document.getElementById("x-paddle-info").innerHTML = `xPaddle = ${xPaddle}`;
+  document.getElementById("x-ball-info").innerHTML = `xBall = ${xBall} : yBall = ${yBall}`;
+  document.getElementById("x-paddle-info").innerHTML = `xPaddle = ${xPaddle}`;
 
   console.log(xBall, yBall);
 
@@ -68,13 +68,11 @@ document.getElementById("more-info").innerHTML = message;
 
 window.addEventListener("deviceorientation", (event) => {
   yAxis = Math.round(event.gamma);
-  document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
   xPaddle = yAxis * 5;
 
   if (yAxis > 10) {
     xPaddle--;
-  }
-  if (yAxis < -10) {
+  } else if (yAxis < -10) {
     xPaddle++;
   }
   renderLine();
