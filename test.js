@@ -1,7 +1,7 @@
 let xPaddle = 45;
 let xBall = 45;
 let yBall = 10;
-
+let tiltControl = false;
 let yAxis = 0;
 
 let xDirection = true;
@@ -20,12 +20,14 @@ function renderLine() {
 }
 
 function renderBall() {
-  document.getElementById("x-paddle-info").innerHTML = `xBall = ${xBall} : yBall = ${yBall}`;
+  // document.getElementById("x-ball-info").innerHTML = `xBall = ${xBall} : yBall = ${yBall}`;
+  // document.getElementById("x-paddle-info").innerHTML = `xPaddle = ${xPaddle}`;
 
   console.log(xBall, yBall);
+
   if (xDirection) {
     xBall += 1;
-    if (xBall === 95) {
+    if (xBall === 85) {
       xDirection = !xDirection;
     }
   }
@@ -39,7 +41,7 @@ function renderBall() {
   if (yDirection) {
     yBall += 1;
   }
-  if (xPaddle < xBall + 10 && xPaddle === xBall && yBall > 75) {
+  if (yBall > 70 && (xBall < xPaddle + 15 || xBall < xPaddle)) {
     yDirection = !yDirection;
   }
   if (!yDirection) {
@@ -58,7 +60,27 @@ function renderBall() {
   document.getElementById("ball").style.top = yBall + "%";
 }
 
-let some = setInterval(() => renderBall(), 100);
+let message = "";
+window.DeviceOrientationEvent
+  ? (message = "your device support tilt control")
+  : (message = "your device don't support tilt control");
+document.getElementById("more-info").innerHTML = message;
+
+window.addEventListener("deviceorientation", (event) => {
+  yAxis = Math.round(event.gamma);
+  document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
+  xPaddle = yAxis * 5;
+
+  if (xPaddle > 10) {
+    xPaddle--;
+  }
+  if (yAxis < -10) {
+    xPaddle++;
+  }
+  renderLine();
+});
+
+let some = setInterval(() => renderBall(), 50);
 
 document.getElementById("left").onclick = () => moveLeft();
 document.getElementById("right").onclick = () => moveRight();
@@ -69,22 +91,4 @@ document.addEventListener("keydown", function (event) {
   } else if (event.code === "ArrowRight") {
     moveRight();
   }
-});
-
-if (window.DeviceOrientationEvent) {
-  document.getElementById("more-info").innerHTML = "true";
-} else document.getElementById("more-info").innerHTML = "false";
-
-window.addEventListener("deviceorientation", (event) => {
-  yAxis = Math.round(event.gamma);
-  document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
-  xPaddle = yAxis * 5;
-
-  if (xPaddle > 10) {
-    xPaddle++;
-  }
-  if (yAxis < -10) {
-    xPaddle--;
-  }
-  renderLine();
 });

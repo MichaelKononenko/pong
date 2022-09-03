@@ -48,7 +48,7 @@ button {
   margin: 0 auto;
   position: relative;
   border: 3px dashed pink;
-  height: 60vh;
+  height: 50vh;
 }
 
 .ball {
@@ -63,7 +63,7 @@ button {
   bottom: 10%;
   position: absolute;
   right: 45%;
-  width: 10%;
+  width: 15%;
   border: 3px solid pink;
 }
 
@@ -74,4 +74,9 @@ button {
 .text-center {
   text-align: center;
   color: white;
+}
+
+#dot {
+  position: absolute;
+  bottom: 10%;
 }/*# sourceMappingURL=main.css.map */
