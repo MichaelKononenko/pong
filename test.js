@@ -2,6 +2,8 @@ let xPaddle = 45;
 let xBall = 45;
 let yBall = 10;
 
+let yAxis = 0;
+
 let xDirection = true;
 let yDirection = true;
 
@@ -72,11 +74,7 @@ if (window.DeviceOrientationEvent) {
 } else document.getElementById("more-info").innerHTML = "false";
 
 window.addEventListener("deviceorientation", (event) => {
-  let x = 0;
-  let y = 0;
-  let z = 0;
-  x = Math.round(event.beta);
-  y = Math.round(event.gamma);
-  z = Math.round(event.alpha);
-  document.getElementById("log-info").innerHTML = `z = ${z} : x = ${x} : y = ${y}`;
+  yAxis = Math.round(event.gamma);
+  document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
+  xPaddle = yAxis * 5;
 });
