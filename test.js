@@ -83,7 +83,7 @@ window.addEventListener("deviceorientation", (event) => {
   }
   if (yAxis < -10) {
     xPaddle++;
-    if (xPaddle > 84 * 5) {
+    if (xPaddle > 84) {
       xPaddle = 84;
     }
   }
