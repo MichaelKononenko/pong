@@ -71,7 +71,7 @@ window.addEventListener("deviceorientation", (event) => {
   document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
   xPaddle = yAxis * 5;
 
-  if (xPaddle > 10) {
+  if (yAxis > 10) {
     xPaddle--;
   }
   if (yAxis < -10) {
