@@ -2,7 +2,7 @@ let xPaddle = 45;
 let xBall = 45;
 let yBall = 10;
 let score = 0;
-let ballSpeed = 100;
+let ballSpeed = 50;
 let xDirection = true;
 let yDirection = true;
 
@@ -85,7 +85,6 @@ function renderLine() {
     yBall = 0;
     document.getElementById("fail").style.display = "block";
   }
-  document.getElementById("info").innerHTML = ballSpeed;
 }
 
 //buttons controll
