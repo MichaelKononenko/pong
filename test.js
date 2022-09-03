@@ -71,7 +71,6 @@ document.getElementById("more-info").innerHTML = message;
 
 window.addEventListener("deviceorientation", (event) => {
   yAxis = Math.round(event.gamma);
-  xPaddle = yAxis;
 
   document.getElementById("y-axis-info").innerHTML = yAxis;
 
