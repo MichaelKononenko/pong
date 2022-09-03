@@ -68,6 +68,9 @@ button {
 }
 
 .description {
+  padding: 10px;
+  margin: 0 auto;
+  width: 250px;
   text-align: center;
 }
 
@@ -79,4 +82,19 @@ button {
 #dot {
   position: absolute;
   bottom: 10%;
+}
+
+#points {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+#fail {
+  position: absolute;
+  top: 50%;
+  transform: translateX(50%);
+  right: 50%;
+  font-size: 30px;
+  display: none;
 }/*# sourceMappingURL=main.css.map */
