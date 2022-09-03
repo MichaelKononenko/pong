@@ -66,3 +66,13 @@ document.addEventListener("keydown", function (event) {
     moveRight();
   }
 });
+
+if (window.DeviceOrientationEvent) {
+  document.getElementById("more-info").innerHTML = "true";
+} else document.getElementById("more-info").innerHTML = "false";
+
+window.addEventListener("deviceorientation", (event) => {
+  document.getElementById(
+    "log-info"
+  ).innerHTML = `z = ${event.alpha} : x = ${event.beta} : y = ${event.gamma}`;
+});
