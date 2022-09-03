@@ -71,16 +71,19 @@ document.getElementById("more-info").innerHTML = message;
 
 window.addEventListener("deviceorientation", (event) => {
   yAxis = Math.round(event.gamma);
-  xPaddle = yAxis * 5;
+  xPaddle = yAxis;
+
+  document.getElementById("y-axis-info").innerHTML = yAxis;
 
   if (yAxis > 10) {
     xPaddle--;
     if (xPaddle < 0) {
       xPaddle = 0;
     }
-  } else if (yAxis < -10) {
+  }
+  if (yAxis < -10) {
     xPaddle++;
-    if (xPaddle > 84) {
+    if (xPaddle > 84 * 5) {
       xPaddle = 84;
     }
   }
