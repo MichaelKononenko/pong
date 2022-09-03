@@ -37,7 +37,7 @@ function renderBall() {
   if (yDirection) {
     yBall += 1;
   }
-  if (xPaddle > xBall - 10 && xPaddle < xBall + 10 && yBall > 70) {
+  if (xPaddle < xBall + 10 && yBall > 70) {
     yDirection = !yDirection;
   }
   if (!yDirection) {
@@ -77,4 +77,5 @@ window.addEventListener("deviceorientation", (event) => {
   yAxis = Math.round(event.gamma);
   document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
   xPaddle = yAxis * 5;
+  renderLine();
 });
