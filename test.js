@@ -77,5 +77,7 @@ window.addEventListener("deviceorientation", (event) => {
   yAxis = Math.round(event.gamma);
   document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
   xPaddle = yAxis * 5;
+  moveRight();
+  moveLeft();
   renderLine();
 });
