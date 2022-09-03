@@ -49,7 +49,7 @@ function renderBall() {
   }
   if (!yDirection) {
     yBall -= 1;
-    if (yBall === 0) {
+    if (yBall < 10) {
       yDirection = !yDirection;
     }
   }
@@ -74,16 +74,16 @@ window.addEventListener("deviceorientation", (event) => {
 
   document.getElementById("y-axis-info").innerHTML = yAxis;
 
-  if (yAxis > 10) {
-    xPaddle++;
-    if (xPaddle > 84) {
-      xPaddle = 84;
-    }
-  }
-  if (yAxis < -10) {
+  if (yAxis > 5) {
     xPaddle--;
     if (xPaddle < 0) {
       xPaddle = 0;
+    }
+  }
+  if (yAxis < -5) {
+    xPaddle++;
+    if (xPaddle > 84) {
+      xPaddle = 84;
     }
   }
   renderLine();
