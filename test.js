@@ -76,8 +76,12 @@ if (window.DeviceOrientationEvent) {
 window.addEventListener("deviceorientation", (event) => {
   yAxis = Math.round(event.gamma);
   document.getElementById("log-info").innerHTML = `y = ${yAxis}`;
-  xPaddle = yAxis * 5;
-  moveRight();
-  moveLeft();
+  xPaddle = (yAxis - 9) * 5;
+  if (xPaddle > 9) {
+    xPaddle = 9;
+  }
+  if (xPaddle < -9) {
+    xPaddle = -9;
+  }
   renderLine();
 });
