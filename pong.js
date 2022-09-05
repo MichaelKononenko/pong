@@ -66,15 +66,17 @@ function tiltAvailable() {
 }
 
 //accelerometer processing
-window.addEventListener("deviceorientation", (event) => {
-  let yAxis = Math.round(event.gamma);
+function tiltProcessing() {
+  window.addEventListener("deviceorientation", (event) => {
+    let yAxis = Math.round(event.gamma);
 
-  if (yAxis > 5) {
-    moveRight();
-  } else if (yAxis < -5) {
-    moveLeft();
-  }
-});
+    if (yAxis > 5) {
+      moveRight();
+    } else if (yAxis < -5) {
+      moveLeft();
+    }
+  });
+}
 
 function renderLine() {
   document.getElementById("line").style.right = xPaddle + "%";
@@ -88,19 +90,28 @@ function renderLine() {
 }
 
 //buttons controll
-document.getElementById("left").onclick = () => moveLeft();
-document.getElementById("right").onclick = () => moveRight();
-
+function buttonsProcessing() {
+  document.getElementById("left").onclick = () => moveLeft();
+  document.getElementById("right").onclick = () => moveRight();
+}
 //keyboard processing
-document.addEventListener("keydown", (event) => {
-  if (event.code === "ArrowLeft") {
-    moveLeft();
-  } else if (event.code === "ArrowRight") {
-    moveRight();
-  }
-});
+function keyboardProcessing() {
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "ArrowLeft") {
+      moveLeft();
+    } else if (event.code === "ArrowRight") {
+      moveRight();
+    }
+  });
+}
 
+function renderSpeed() {
+  const ballRenderTime = setInterval(() => renderBall(), 50);
+  const paddleRenderTime = setInterval(() => renderLine(), 25);
+}
+
+tiltProcessing();
+buttonsProcessing();
+keyboardProcessing();
 tiltAvailable();
-
-const ballRenderTime = setInterval(() => renderBall(), ballSpeed);
-setInterval(() => renderLine(), 25);
+renderSpeed();
