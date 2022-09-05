@@ -1,19 +1,21 @@
 let xPaddle = 45;
-let xBall = 45;
+let xBall = 450;
 let yBall = 10;
 let score = 0;
-let ballSpeed = 50;
+let ballSpeed = 0;
 let xDirection = true;
 let yDirection = true;
 
 function moveLeft() {
   xPaddle += 1;
+
   if (xPaddle > 84) {
     xPaddle = 84;
   }
 }
 function moveRight() {
   xPaddle -= 1;
+
   if (xPaddle < 0) {
     xPaddle = 0;
   }
@@ -21,40 +23,44 @@ function moveRight() {
 
 function renderBall() {
   if (xDirection) {
-    xBall += 1;
-    if (xBall === 90) {
+    xBall += ballSpeed;
+
+    if (xBall > 900) {
       xDirection = !xDirection;
     }
   }
   if (!xDirection) {
-    xBall -= 1;
-    if (xBall === 0) {
+    xBall -= ballSpeed;
+
+    if (xBall < 0) {
       xDirection = !xDirection;
     }
   }
 
   if (yDirection) {
-    yBall += 1;
-    if (yBall > 70 && xBall < xPaddle + 10 && xBall > xPaddle - 10) {
+    yBall += ballSpeed;
+
+    if (yBall / 10 > 70 && xBall / 10 < xPaddle + 10 && xBall / 10 > xPaddle - 10) {
       yDirection = !yDirection;
       score += 1;
     }
   }
   if (!yDirection) {
-    yBall -= 1;
+    yBall -= ballSpeed;
+
     if (yBall < 10) {
       yDirection = !yDirection;
     }
   }
 
-  if (yBall > 85) {
+  if (yBall > 850) {
     yBall = 0;
     xBall = 45;
     score -= 1;
   }
 
-  document.getElementById("ball").style.right = xBall + "%";
-  document.getElementById("ball").style.top = yBall + "%";
+  document.getElementById("ball").style.right = xBall / 10 + "%";
+  document.getElementById("ball").style.top = yBall / 10 + "%";
 }
 
 function tiltAvailable() {
@@ -80,7 +86,12 @@ function tiltProcessing() {
 
 function renderLine() {
   document.getElementById("line").style.right = xPaddle + "%";
+}
+
+function scoreCounter() {
   document.getElementById("points").innerHTML = `score: ${score}`;
+
+  ballSpeed = score + 1;
 
   if (score < 0) {
     xBall = 45;
@@ -94,6 +105,7 @@ function buttonsProcessing() {
   document.getElementById("left").onclick = () => moveLeft();
   document.getElementById("right").onclick = () => moveRight();
 }
+
 //keyboard processing
 function keyboardProcessing() {
   document.addEventListener("keydown", (event) => {
@@ -106,8 +118,9 @@ function keyboardProcessing() {
 }
 
 function renderSpeed() {
-  const ballRenderTime = setInterval(() => renderBall(), 50);
+  const ballRenderTime = setInterval(() => renderBall(), 20);
   const paddleRenderTime = setInterval(() => renderLine(), 25);
+  const scoreRenderTime = setInterval(() => scoreCounter(), 25);
 }
 
 tiltProcessing();
