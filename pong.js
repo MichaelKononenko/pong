@@ -102,8 +102,8 @@ function scoreCounter() {
 
 //buttons controll
 function buttonsProcessing() {
-  document.getElementById("left").onclick = () => moveLeft();
-  document.getElementById("right").onclick = () => moveRight();
+  document.getElementById("left").onclick = moveLeft;
+  document.getElementById("right").onclick = moveRight;
 }
 
 //keyboard processing
@@ -118,9 +118,9 @@ function keyboardProcessing() {
 }
 
 function renderSpeed() {
-  const ballRenderTime = setInterval(() => renderBall(), 20);
-  const paddleRenderTime = setInterval(() => renderLine(), 25);
-  const scoreRenderTime = setInterval(() => scoreCounter(), 25);
+  const ballRenderTime = setInterval(renderBall, 20);
+  const paddleRenderTime = setInterval(renderLine, 25);
+  const scoreRenderTime = setInterval(scoreCounter, 25);
 }
 
 tiltProcessing();
