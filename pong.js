@@ -123,7 +123,7 @@ function renderSpeed() {
   const scoreRenderTime = setInterval(scoreCounter, 25);
 }
 
-setInterval(tiltProcessing, 50);
+tiltProcessing();
 buttonsProcessing();
 keyboardProcessing();
 tiltAvailable();
