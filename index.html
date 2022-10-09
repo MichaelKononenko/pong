@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pong</title>
     <!-- FavIcon -->
-    <link rel="icon" href="./images/success-kid.ico" />
+    <link rel="icon" href="./images/pong-icon.ico" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,27 +14,31 @@
       rel="stylesheet"
     />
     <!-- CustomStyles -->
-    <link rel="stylesheet" href="./css/main.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
     <div class="wrapper">
       <div class="field">
         <span class="ball" id="ball">&#10050;</span>
         <span class="paddle" id="line"></span>
-        <p id="x-ball-info" class="text-center"></p>
-        <p id="x-paddle-info">|</p>
-        <p id="info" class="text-center"></p>
-        <p id="points">10</p>
-        <p id="fail">you lose</p>
+        <span id="points">0</span>
+        <span id="fail">you lose</span>
       </div>
-      <button type="button" id="left" class="controll controll--left">left</button>
-      <button type="button" id="right" class="controll controll--right">right</button>
-      <p class="description">
-        use keyboard &#8592; &#8594; to controll the pad or rotate your mobile device to right and
-        left also you can use buttons
-      </p>
-      <p class="text-center" id="more-info"></p>
-      <p id="xPaddle"></p>
+      <div class="controll-field">
+        <button type="button" id="left" class="controll controll--left">left</button>
+        <button type="button" id="info" class="controll">info</button>
+        <button type="button" id="right" class="controll controll--right">right</button>
+      </div>
+      <span id="xPaddle"></span>
+    </div>
+    <div class="is-hidden" id="backdrop">
+      <div class="modal">
+        <p class="description">
+          use keyboard &#8592; &#8594; to controll the pad or rotate your mobile device to right and
+          left also you can use buttons
+        </p>
+        <p class="text-center" id="more-info"></p>
+      </div>
     </div>
     <script type="module" src="./pong.js"></script>
   </body>

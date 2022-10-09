@@ -1,66 +1,75 @@
-let xPaddle = 45;
-let xBall = 450;
-let yBall = 10;
+const backdrop = document.querySelector("#backdrop");
+const ball = document.querySelector("#ball");
+const line = document.querySelector("#line");
+const field = document.querySelector(".field");
+const fieldWidht = field.offsetWidth;
+const fieldHeight = field.offsetHeight;
+document.addEventListener("click", buttonHandling);
+
+let xPaddle = 50;
+let xBall = 25;
+let yBall = 0;
 let score = 0;
 let ballSpeed = 0;
 let xDirection = true;
 let yDirection = true;
 
-function moveLeft() {
-  xPaddle += 1;
-
-  if (xPaddle > 84) {
-    xPaddle = 84;
+function buttonHandling(event) {
+  const target = event.target.id;
+  switch (target) {
+    case "left":
+      moveLeft();
+      break;
+    case "right":
+      moveRight();
+      break;
+    case "info":
+      backdrop.classList.remove("is-hidden");
+      break;
+    case "backdrop":
+      backdrop.classList.add("is-hidden");
+      break;
   }
 }
-function moveRight() {
-  xPaddle -= 1;
 
-  if (xPaddle < 0) {
-    xPaddle = 0;
-  }
+function moveLeft() {
+  xPaddle += 10;
+  xPaddle > fieldWidht - 56 ? (xPaddle = fieldWidht - 56) : null;
+}
+function moveRight() {
+  xPaddle -= 10;
+  xPaddle < 50 ? (xPaddle = 50) : null;
 }
 
 function renderBall() {
   if (xDirection) {
     xBall += ballSpeed;
-
-    if (xBall > 900) {
-      xDirection = !xDirection;
-    }
-  }
-  if (!xDirection) {
+    if (xBall > fieldWidht - 25) xDirection = !xDirection;
+  } else if (!xDirection) {
     xBall -= ballSpeed;
-
-    if (xBall < 0) {
-      xDirection = !xDirection;
-    }
+    if (xBall < 25) xDirection = !xDirection;
   }
 
   if (yDirection) {
     yBall += ballSpeed;
 
-    if (yBall / 10 > 70 && xBall / 10 < xPaddle + 10 && xBall / 10 > xPaddle - 10) {
+    if (yBall > (fieldHeight / 100) * 70 + 25 && xBall < xPaddle + 50 && xBall > xPaddle - 50) {
       yDirection = !yDirection;
       score += 1;
     }
   }
   if (!yDirection) {
     yBall -= ballSpeed;
-
-    if (yBall < 10) {
-      yDirection = !yDirection;
-    }
+    if (yBall < 0) yDirection = !yDirection;
   }
 
-  if (yBall > 850) {
+  if (yBall > (fieldHeight / 100) * 85) {
     yBall = 0;
-    xBall = 45;
+    xBall = Math.round(Math.random() * fieldWidht);
     score -= 1;
   }
 
-  document.getElementById("ball").style.right = xBall / 10 + "%";
-  document.getElementById("ball").style.top = yBall / 10 + "%";
+  ball.style = `right:${xBall}px; top:${yBall}px;`;
 }
 
 function tiltAvailable() {
@@ -85,7 +94,7 @@ function tiltProcessing() {
 }
 
 function renderLine() {
-  document.getElementById("line").style.right = xPaddle + "%";
+  line.style.right = xPaddle + "px";
 }
 
 function scoreCounter() {
@@ -94,16 +103,10 @@ function scoreCounter() {
   ballSpeed = score + 1;
 
   if (score < 0) {
-    xBall = 45;
+    xBall = fieldWidht / 2;
     yBall = 0;
     document.getElementById("fail").style.display = "block";
   }
-}
-
-//buttons controll
-function buttonsProcessing() {
-  document.getElementById("left").onclick = moveLeft;
-  document.getElementById("right").onclick = moveRight;
 }
 
 //keyboard processing
@@ -124,7 +127,6 @@ function renderSpeed() {
 }
 
 tiltProcessing();
-buttonsProcessing();
 keyboardProcessing();
 tiltAvailable();
 renderSpeed();
